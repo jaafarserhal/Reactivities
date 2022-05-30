@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './app/layout/semantic-ui-01.css';
+import 'react-calendar/dist/Calendar.css';
 import './app/layout/style.css';
 import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from 'semantic-ui-react'
 import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { observer } from 'mobx-react-lite';
@@ -13,7 +12,6 @@ function App() {
   return (
     <>
        {location.pathname === '/' ? null : <NavBar />} 
-       <Container style={{marginTop: '7em'}}>
         <Routes>
          <Route path="/" element={<HomePage />} />
          <Route path="/activities" element={<ActivityDashboard />} />
@@ -21,7 +19,6 @@ function App() {
          <Route key={location.key} path={"/createActivity"} element={<ActivityForm />} />
          <Route key={location.key} path={"/manage/:id"} element={<ActivityForm />} />
         </Routes>
-       </Container>
     </>
   );
 }
