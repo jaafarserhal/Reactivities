@@ -6,6 +6,8 @@ using Persistence;
 using AutoMapper;
 using Application.Core;
 using API.Extensions;
+using FluentValidation.AspNetCore;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 IConfiguration _config = builder.Configuration;
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(config =>
+{
+    config.RegisterValidatorsFromAssemblyContaining<Create>();
+});
 builder.Services.AddApplicationServices(_config);
 
 
@@ -35,6 +40,7 @@ catch (Exception ex)
     logger.LogError(ex, "Error occured during migration");
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
